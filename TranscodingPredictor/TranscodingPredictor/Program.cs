@@ -31,18 +31,21 @@ Console.ReadKey();
 
 ITransformer BuildAndTrainModel(MLContext mlContext, IDataView trainingDataView)
 {
-    IEstimator<ITransformer> estimator = mlContext.Transforms.Conversion.MapValueToKey(outputColumnName: "AgentIdEncoded", inputColumnName: "AgentId")
-        .Append(mlContext.Transforms.Conversion.MapValueToKey(outputColumnName: "InteractionIdEncoded", inputColumnName: "InteractionId"));
+    IEstimator<ITransformer> estimator = mlContext.Transforms.Conversion
+        .MapValueToKey(outputColumnName: "AgentIdEncoded", inputColumnName: "AgentId")
+        .Append(mlContext.Transforms.Conversion.MapValueToKey(outputColumnName: "Call_durationEncoded", inputColumnName: "Call_duration"))
+        .Append(mlContext.Transforms.Conversion.MapValueToKey(outputColumnName: "Media_OutputTypeEncoded",
+            inputColumnName: "Media_OutputType"));
 
     var options = new MatrixFactorizationTrainer.Options
     {
         MatrixColumnIndexColumnName = "AgentIdEncoded",
-        MatrixRowIndexColumnName = "InteractionIdEncoded",
-        LabelColumnName = "InteractionId",
-        NumberOfIterations = 20,
-        ApproximationRank = 100
+        MatrixRowIndexColumnName = "Call_durationEncoded",
+        LabelColumnName = "Label",
+        NumberOfIterations = 80,
+        ApproximationRank = 100,
     };
-
+    
     var trainerEstimator = estimator.Append(mlContext.Recommendation().Trainers.MatrixFactorization(options));
     Console.WriteLine("=============== Training the model ===============");
     ITransformer model = trainerEstimator.Fit(trainingDataView);
@@ -54,7 +57,7 @@ void EvaluateModel(MLContext mlContext, IDataView testDataView, ITransformer mod
 {
     Console.WriteLine("=============== Evaluating the model ===============");
     var prediction = model.Transform(testDataView);
-    var metrics = mlContext.Regression.Evaluate(prediction, labelColumnName: "InteractionId", scoreColumnName: "AgentId");
+    var metrics = mlContext.Regression.Evaluate(prediction, labelColumnName: "Label", scoreColumnName: "Score");
     Console.WriteLine("Root Mean Squared Error : " + metrics.RootMeanSquaredError.ToString());
     Console.WriteLine("RSquared: " + metrics.RSquared.ToString());
 }
@@ -65,20 +68,19 @@ void UseModelForSinglePrediction(MLContext mlContext, ITransformer model)
     var predictionEngine = mlContext.Model.CreatePredictionEngine<InteractionsData, InteractionsPrediction>(model);
     var testInput = new InteractionsData
     {
-        Playback_Initiator = 15, 
         InteractionId = 7119854815151194137,
-        AgentId = 9,
-        Call_duration = 103726767,
-        Media_OutputType = (int) MediaOutputType.Default
+        AgentId = 8,
+        Call_duration = 138780,
+        Media_OutputType = (int) MediaOutputType.ScreenOnly
     };
     var movieRatingPrediction = predictionEngine.Predict(testInput);
-    if (Math.Round(movieRatingPrediction.Score, 1) > 1)
+    if (movieRatingPrediction.Score > 1)
     {
-        Console.WriteLine("Interaction " + testInput.InteractionId + " is recommended for user " + testInput.Playback_Initiator);
+        Console.WriteLine($"Interaction {testInput.InteractionId} is recommended");
     }
     else
     {
-        Console.WriteLine("Interaction " + testInput.InteractionId + " is not recommended for user " + testInput.Playback_Initiator);
+        Console.WriteLine($"Interaction {testInput.InteractionId} is not recommended for user ");
     }
 
 }

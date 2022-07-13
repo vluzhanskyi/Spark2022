@@ -1,5 +1,5 @@
 ﻿public class InteractionsPrediction
 {
-    public float InteractionId;
+    public float Label;
     public float Score;
 }
