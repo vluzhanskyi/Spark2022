@@ -13,6 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PlaybackModels\PlaybackModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Data\interactions-train.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

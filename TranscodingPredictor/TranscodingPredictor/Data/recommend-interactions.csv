@@ -1,1 +1,1 @@
-Playback_Initiator,AgentId,InteractionId,Call_duration,Media_OutputType
+InteractionId,OutputType,Duration,PlaybackInitiatorId,AgentId
