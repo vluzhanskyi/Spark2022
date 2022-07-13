@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.ML;
 using Microsoft.ML.Trainers;
+using PlaybackModels;
 
 Console.WriteLine("Hello, World!");
 
@@ -23,8 +24,8 @@ Console.ReadKey();
     var trainingDataPath = Path.Combine(Environment.CurrentDirectory, "Data", "interactions-train.csv");
     var testDataPath = Path.Combine(Environment.CurrentDirectory, "Data", "recommend-interactions.csv");
 
-    IDataView trainingDataView = mlContext.Data.LoadFromTextFile<InteractionsData>(trainingDataPath, hasHeader: true, separatorChar: ',');
-    IDataView testDataView = mlContext.Data.LoadFromTextFile<InteractionsData>(testDataPath, hasHeader: true, separatorChar: ',');
+    IDataView trainingDataView = mlContext.Data.LoadFromTextFile<PlaybackStatisticsItem>(trainingDataPath, hasHeader: true, separatorChar: ',');
+    IDataView testDataView = mlContext.Data.LoadFromTextFile<PlaybackStatisticsItem>(testDataPath, hasHeader: true, separatorChar: ',');
 
     return (trainingDataView, testDataView);
 }
@@ -65,8 +66,8 @@ void EvaluateModel(MLContext mlContext, IDataView testDataView, ITransformer mod
 void UseModelForSinglePrediction(MLContext mlContext, ITransformer model)
 {
     Console.WriteLine("=============== Making a prediction ===============");
-    var predictionEngine = mlContext.Model.CreatePredictionEngine<InteractionsData, InteractionsPrediction>(model);
-    var testInput = new InteractionsData
+    var predictionEngine = mlContext.Model.CreatePredictionEngine< PlaybackStatisticsItem, PredictedInteraction >(model);
+    var testInput = new PlaybackStatisticsItem
     {
         InteractionId = 7119854815151194137,
         AgentId = 8,

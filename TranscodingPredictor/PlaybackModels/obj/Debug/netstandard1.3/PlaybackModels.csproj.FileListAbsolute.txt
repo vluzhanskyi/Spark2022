@@ -1,0 +1,10 @@
+D:\PROJECTS\Sparkathon\TranscodingPredictor\TranscodingPredictor\PlaybackModels\bin\Debug\netstandard1.3\PlaybackModels.deps.json
+D:\PROJECTS\Sparkathon\TranscodingPredictor\TranscodingPredictor\PlaybackModels\bin\Debug\netstandard1.3\PlaybackModels.dll
+D:\PROJECTS\Sparkathon\TranscodingPredictor\TranscodingPredictor\PlaybackModels\bin\Debug\netstandard1.3\PlaybackModels.pdb
+D:\PROJECTS\Sparkathon\TranscodingPredictor\TranscodingPredictor\PlaybackModels\obj\Debug\netstandard1.3\PlaybackModels.csproj.AssemblyReference.cache
+D:\PROJECTS\Sparkathon\TranscodingPredictor\TranscodingPredictor\PlaybackModels\obj\Debug\netstandard1.3\PlaybackModels.GeneratedMSBuildEditorConfig.editorconfig
+D:\PROJECTS\Sparkathon\TranscodingPredictor\TranscodingPredictor\PlaybackModels\obj\Debug\netstandard1.3\PlaybackModels.AssemblyInfoInputs.cache
+D:\PROJECTS\Sparkathon\TranscodingPredictor\TranscodingPredictor\PlaybackModels\obj\Debug\netstandard1.3\PlaybackModels.AssemblyInfo.cs
+D:\PROJECTS\Sparkathon\TranscodingPredictor\TranscodingPredictor\PlaybackModels\obj\Debug\netstandard1.3\PlaybackModels.csproj.CoreCompileInputs.cache
+D:\PROJECTS\Sparkathon\TranscodingPredictor\TranscodingPredictor\PlaybackModels\obj\Debug\netstandard1.3\PlaybackModels.dll
+D:\PROJECTS\Sparkathon\TranscodingPredictor\TranscodingPredictor\PlaybackModels\obj\Debug\netstandard1.3\PlaybackModels.pdb
