@@ -1,6 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "\\.git",
+    "\\Local settings (.vs)\\Spark2022",
+    "\\Local settings (.vs)\\Spark2022\\v17"
   ],
   "PreviewInSolutionExplorer": false
 }
