@@ -1,13 +1,9 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
-# User-specific files
+﻿# User-specific files
 *.rsuser
 *.suo
 *.user
 *.userosscache
 *.sln.docstates
-*.cache
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -37,5 +33,3 @@ bld/
 /TranscodingPredictor/DbClient/obj
 /TranscodingPredictor/PredictionService/bin/Debug/net6.0
 /TranscodingPredictor/PredictionService/obj
-
-/TranscodingPredictor/PlaybackPredictionWorker/Data
