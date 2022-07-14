@@ -8,10 +8,10 @@ internal class InteractionsData : PlaybackStatisticsItem
     public override int AgentId { get; set; }
 
     [LoadColumn(1)] 
-    public override long Duration { get; set; }
+    public override float Duration { get; set; }
 
     [LoadColumn(2)] 
-    public override int Label { get; set; }
+    public override float Label { get; set; }
 
     [LoadColumn(3)] 
     public override int OutputType { get; set; }

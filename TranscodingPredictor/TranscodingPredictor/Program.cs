@@ -34,9 +34,9 @@ ITransformer BuildAndTrainModel(MLContext mlContext, IDataView trainingDataView)
 {
     IEstimator<ITransformer> estimator = mlContext.Transforms.Conversion
         .MapValueToKey(outputColumnName: "AgentIdEncoded", inputColumnName: "AgentId")
-        .Append(mlContext.Transforms.Conversion.MapValueToKey(outputColumnName: "Call_durationEncoded", inputColumnName: "Call_duration"))
+        .Append(mlContext.Transforms.Conversion.MapValueToKey(outputColumnName: "Call_durationEncoded", inputColumnName: "Duration"))
         .Append(mlContext.Transforms.Conversion.MapValueToKey(outputColumnName: "Media_OutputTypeEncoded",
-            inputColumnName: "Media_OutputType"));
+            inputColumnName: "OutputType"));
 
     var options = new MatrixFactorizationTrainer.Options
     {
