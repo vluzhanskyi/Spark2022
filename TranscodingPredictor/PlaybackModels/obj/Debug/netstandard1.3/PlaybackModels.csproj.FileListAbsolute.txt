@@ -8,3 +8,13 @@ D:\PROJECTS\Sparkathon\TranscodingPredictor\TranscodingPredictor\PlaybackModels\
 D:\PROJECTS\Sparkathon\TranscodingPredictor\TranscodingPredictor\PlaybackModels\obj\Debug\netstandard1.3\PlaybackModels.csproj.CoreCompileInputs.cache
 D:\PROJECTS\Sparkathon\TranscodingPredictor\TranscodingPredictor\PlaybackModels\obj\Debug\netstandard1.3\PlaybackModels.dll
 D:\PROJECTS\Sparkathon\TranscodingPredictor\TranscodingPredictor\PlaybackModels\obj\Debug\netstandard1.3\PlaybackModels.pdb
+C:\Users\viacheslavl\source\repos\Spark2022\TranscodingPredictor\PlaybackModels\bin\Debug\netstandard1.3\PlaybackModels.deps.json
+C:\Users\viacheslavl\source\repos\Spark2022\TranscodingPredictor\PlaybackModels\bin\Debug\netstandard1.3\PlaybackModels.dll
+C:\Users\viacheslavl\source\repos\Spark2022\TranscodingPredictor\PlaybackModels\bin\Debug\netstandard1.3\PlaybackModels.pdb
+C:\Users\viacheslavl\source\repos\Spark2022\TranscodingPredictor\PlaybackModels\obj\Debug\netstandard1.3\PlaybackModels.csproj.AssemblyReference.cache
+C:\Users\viacheslavl\source\repos\Spark2022\TranscodingPredictor\PlaybackModels\obj\Debug\netstandard1.3\PlaybackModels.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\viacheslavl\source\repos\Spark2022\TranscodingPredictor\PlaybackModels\obj\Debug\netstandard1.3\PlaybackModels.AssemblyInfoInputs.cache
+C:\Users\viacheslavl\source\repos\Spark2022\TranscodingPredictor\PlaybackModels\obj\Debug\netstandard1.3\PlaybackModels.AssemblyInfo.cs
+C:\Users\viacheslavl\source\repos\Spark2022\TranscodingPredictor\PlaybackModels\obj\Debug\netstandard1.3\PlaybackModels.csproj.CoreCompileInputs.cache
+C:\Users\viacheslavl\source\repos\Spark2022\TranscodingPredictor\PlaybackModels\obj\Debug\netstandard1.3\PlaybackModels.dll
+C:\Users\viacheslavl\source\repos\Spark2022\TranscodingPredictor\PlaybackModels\obj\Debug\netstandard1.3\PlaybackModels.pdb

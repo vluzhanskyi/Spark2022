@@ -1,4 +1,4 @@
-AgentId,Call_duration,Playback_Initiator,Media_OutputType,InteractionId
+AgentId,Duration,Label,OutputType,InteractionId
 9,255000,15,1,7119882284539576412
 9,347793,15,1,7119882288834543720
 8,330696,15,1,7119882284539576406

@@ -1,18 +1,21 @@
 ﻿using System.Net.Http.Headers;
 using Microsoft.ML.Data;
+using PlaybackModels;
 
-internal class InteractionsData
+internal class InteractionsData : PlaybackStatisticsItem
 {
-    
-    [LoadColumn(0)]
-    public float AgentId;
-    [LoadColumn(1)]
-    public float Call_duration;
-    [LoadColumn(2)]
-    public float Label;
-    [LoadColumn(3)]
-    public float Media_OutputType;
-     [LoadColumn(4)]
-     
-    public long InteractionId;
+    [LoadColumn(0)] 
+    public override int AgentId { get; set; }
+
+    [LoadColumn(1)] 
+    public override long Duration { get; set; }
+
+    [LoadColumn(2)] 
+    public override int Label { get; set; }
+
+    [LoadColumn(3)] 
+    public override int OutputType { get; set; }
+
+    [LoadColumn(4)]
+     public override long InteractionId { get; set; }
 }

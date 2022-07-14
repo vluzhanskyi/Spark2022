@@ -24,8 +24,8 @@ Console.ReadKey();
     var trainingDataPath = Path.Combine(Environment.CurrentDirectory, "Data", "interactions-train.csv");
     var testDataPath = Path.Combine(Environment.CurrentDirectory, "Data", "recommend-interactions.csv");
 
-    IDataView trainingDataView = mlContext.Data.LoadFromTextFile<PlaybackStatisticsItem>(trainingDataPath, hasHeader: true, separatorChar: ',');
-    IDataView testDataView = mlContext.Data.LoadFromTextFile<PlaybackStatisticsItem>(testDataPath, hasHeader: true, separatorChar: ',');
+    IDataView trainingDataView = mlContext.Data.LoadFromTextFile<InteractionsData>(trainingDataPath, hasHeader: true, separatorChar: ',');
+    IDataView testDataView = mlContext.Data.LoadFromTextFile<InteractionsData>(testDataPath, hasHeader: true, separatorChar: ',');
 
     return (trainingDataView, testDataView);
 }
@@ -66,13 +66,13 @@ void EvaluateModel(MLContext mlContext, IDataView testDataView, ITransformer mod
 void UseModelForSinglePrediction(MLContext mlContext, ITransformer model)
 {
     Console.WriteLine("=============== Making a prediction ===============");
-    var predictionEngine = mlContext.Model.CreatePredictionEngine< PlaybackStatisticsItem, PredictedInteraction >(model);
-    var testInput = new PlaybackStatisticsItem
+    var predictionEngine = mlContext.Model.CreatePredictionEngine< InteractionsData, PredictedInteraction >(model);
+    var testInput = new InteractionsData
     {
         InteractionId = 7119854815151194137,
         AgentId = 8,
-        Call_duration = 138780,
-        Media_OutputType = (int) MediaOutputType.ScreenOnly
+        Duration = 138780,
+        OutputType = (int) MediaOutputType.ScreenOnly
     };
     var movieRatingPrediction = predictionEngine.Predict(testInput);
     if (movieRatingPrediction.Score > 1)

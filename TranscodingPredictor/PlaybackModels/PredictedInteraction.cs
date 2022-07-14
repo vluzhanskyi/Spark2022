@@ -6,8 +6,8 @@ namespace PlaybackModels
 {
     public class PredictedInteraction
     {
-        public float InteractionId { get; set; }
-        public float Score { get; set; }
+        public virtual float Label { get; set; }
+        public virtual float Score { get; set; }
 
     }
 }
