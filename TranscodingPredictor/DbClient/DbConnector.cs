@@ -28,7 +28,7 @@ namespace DbClient
             {
                 string sql =
                     "SELECT iInitiatorUserID, biInteractionDuration, iInteractionID " +
-                    $"FROM nice_interactions.dbo.vwInteraction WHERE dtInteractionGMTStopTime >= DATEADD(day,-{(int)type}, GETDATE())";
+                    $"FROM nice_interactions.dbo.vwInteraction WHERE dtInteractionGMTStopTime >= DATEADD(day,-{type}, GETDATE())";
 
                 using (SqlCommand command = new SqlCommand(sql, connection))
                 {
@@ -39,8 +39,8 @@ namespace DbClient
                             result.Add(new PlaybackStatisticsItem()
                             {
                                 AgentId = reader.GetInt32(0),
-                                Duration = reader.GetInt64(1) / 10000,
-                                Label = 15,
+                                Duration = reader.GetInt64(1) / 1000,
+                                Label = 10 - reader.GetInt32(0),
                                 OutputType = 1,
                                 InteractionId = reader.GetInt64(2)
                             });

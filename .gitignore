@@ -1,6 +1,33 @@
 ﻿################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.cache
+
+# User-specific files (MonoDevelop/Xamarin Studio)
+*.userprefs
+
+# Mono auto generated files
+mono_crash.*
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
 
 /TranscodingPredictor/TranscodingPredictor/obj/Debug/net6.0
 /TranscodingPredictor/TranscodingPredictor/obj
@@ -10,3 +37,5 @@
 /TranscodingPredictor/DbClient/obj
 /TranscodingPredictor/PredictionService/bin/Debug/net6.0
 /TranscodingPredictor/PredictionService/obj
+
+/TranscodingPredictor/PlaybackPredictionWorker/Data

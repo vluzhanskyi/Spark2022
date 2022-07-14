@@ -14,12 +14,21 @@ namespace TranscodingPredictor
         private List<PlaybackStatisticsItem> newData;
         private readonly DbConnector connector;
         private string folderPath;
+        private string playbackStatisticFileName;
         public DataLoader()
         {
             connector = new DbConnector();
             prevData = new List<PlaybackStatisticsItem>();
             newData = new List<PlaybackStatisticsItem>();
             folderPath = Path.Combine(Environment.CurrentDirectory, "Data");
+            playbackStatisticFileName = "PlaybackStatistics.csv";
+        }
+
+        public string GetLastPlaybackStatistics()
+        {
+            string filePath = Path.Combine(folderPath, playbackStatisticFileName);
+            File.Copy($@"D:\Program Files\Nice Systems\NICEPlayerPro\{playbackStatisticFileName}", filePath);
+            return filePath;
         }
 
         public IEnumerable<InteractionsData> GetNewInteractions()
@@ -33,6 +42,7 @@ namespace TranscodingPredictor
                     OutputType = dataItem.OutputType
                 });
         }
+
         public void LoadSqlData()
         {
             prevData = connector.LoadInteractionsData(DbFilterType.FromYestarday);
@@ -48,12 +58,12 @@ namespace TranscodingPredictor
         {
             
             WriteData(prevData, "interactions-train.csv");
-            WriteData(newData, "recommend-interactions.csv");
+          //  WriteData(newData, "recommend-interactions.csv");
         }
 
         public void WriteResults(List<PlaybackStatisticsItem> dataList)
         {
-            WriteResultsData(dataList, "Prediction results");
+            WriteResultsData(dataList, "Prediction_results.txt");
         }
 
         private void WriteData(List<PlaybackStatisticsItem> dataList, string fileName)
