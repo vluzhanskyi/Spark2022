@@ -1,17 +1,4 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
-
-/TranscodingPredictor/TranscodingPredictor/obj/Debug/net6.0
-/TranscodingPredictor/TranscodingPredictor/obj
-/TranscodingPredictor/TranscodingPredictor/bin/Debug/net6.0/TranscodingPredictor.pdb
-/TranscodingPredictor/TranscodingPredictor/bin/Debug/net6.0
-/TranscodingPredictor/DbClient/bin/Debug/net6.0
-/TranscodingPredictor/DbClient/obj
-/TranscodingPredictor/PredictionService/bin/Debug/net6.0
-/TranscodingPredictor/PredictionService/obj
-
-# User-specific files
+﻿# User-specific files
 *.rsuser
 *.suo
 *.user
@@ -37,3 +24,12 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+
+/TranscodingPredictor/TranscodingPredictor/obj/Debug/net6.0
+/TranscodingPredictor/TranscodingPredictor/obj
+/TranscodingPredictor/TranscodingPredictor/bin/Debug/net6.0/TranscodingPredictor.pdb
+/TranscodingPredictor/TranscodingPredictor/bin/Debug/net6.0
+/TranscodingPredictor/DbClient/bin/Debug/net6.0
+/TranscodingPredictor/DbClient/obj
+/TranscodingPredictor/PredictionService/bin/Debug/net6.0
+/TranscodingPredictor/PredictionService/obj
