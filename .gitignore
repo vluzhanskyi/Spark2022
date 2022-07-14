@@ -6,3 +6,7 @@
 /TranscodingPredictor/TranscodingPredictor/obj
 /TranscodingPredictor/TranscodingPredictor/bin/Debug/net6.0/TranscodingPredictor.pdb
 /TranscodingPredictor/TranscodingPredictor/bin/Debug/net6.0
+/TranscodingPredictor/DbClient/bin/Debug/net6.0
+/TranscodingPredictor/DbClient/obj
+/TranscodingPredictor/PredictionService/bin/Debug/net6.0
+/TranscodingPredictor/PredictionService/obj

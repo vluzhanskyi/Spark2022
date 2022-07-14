@@ -1,10 +1,10 @@
 ﻿
 using Microsoft.ML;
 using Microsoft.ML.Trainers;
-using PlaybackModels;
+using PlaybackModels;using TranscodingPredictor;
 
-Console.WriteLine("Hello, World!");
-
+var dataLoader = new DataLoader();
+dataLoader.LoadSqlData();
 MLContext mlContext = new MLContext();
 
 (IDataView trainingDataView, IDataView testDataView) = LoadData(mlContext);
@@ -34,14 +34,15 @@ ITransformer BuildAndTrainModel(MLContext mlContext, IDataView trainingDataView)
 {
     IEstimator<ITransformer> estimator = mlContext.Transforms.Conversion
         .MapValueToKey(outputColumnName: "AgentIdEncoded", inputColumnName: "AgentId")
-        .Append(mlContext.Transforms.Conversion.MapValueToKey(outputColumnName: "Call_durationEncoded", inputColumnName: "Duration"))
-        .Append(mlContext.Transforms.Conversion.MapValueToKey(outputColumnName: "Media_OutputTypeEncoded",
-            inputColumnName: "OutputType"));
+        .Append(mlContext.Transforms.Conversion.MapValueToKey(outputColumnName: "DurationEncoded",
+            inputColumnName: "Duration"));
+        //.Append(mlContext.Transforms.Conversion.MapValueToKey(outputColumnName: "OutputTypeEncoded",
+        //    inputColumnName: "OutputType"));
 
     var options = new MatrixFactorizationTrainer.Options
     {
         MatrixColumnIndexColumnName = "AgentIdEncoded",
-        MatrixRowIndexColumnName = "Call_durationEncoded",
+        MatrixRowIndexColumnName = "DurationEncoded",
         LabelColumnName = "Label",
         NumberOfIterations = 80,
         ApproximationRank = 100,
@@ -67,23 +68,22 @@ void UseModelForSinglePrediction(MLContext mlContext, ITransformer model)
 {
     Console.WriteLine("=============== Making a prediction ===============");
     var predictionEngine = mlContext.Model.CreatePredictionEngine< InteractionsData, PredictedInteraction >(model);
-    var testInput = new InteractionsData
-    {
-        InteractionId = 7119854815151194137,
-        AgentId = 8,
-        Duration = 138780,
-        OutputType = (int) MediaOutputType.ScreenOnly
-    };
-    var movieRatingPrediction = predictionEngine.Predict(testInput);
-    if (movieRatingPrediction.Score > 1)
-    {
-        Console.WriteLine($"Interaction {testInput.InteractionId} is recommended");
-    }
-    else
-    {
-        Console.WriteLine($"Interaction {testInput.InteractionId} is not recommended for user ");
-    }
+    var results = new List<PlaybackStatisticsItem>();
 
+    foreach (InteractionsData testInput in dataLoader.GetNewInteractions())
+    {
+        var movieRatingPrediction = predictionEngine.Predict(testInput);
+        if (movieRatingPrediction.Score > 1)
+        {
+            Console.WriteLine($"Interaction {testInput.InteractionId} is recommended");
+            results.Add(testInput);
+        }
+        else
+        {
+            Console.WriteLine($"Interaction {testInput.InteractionId} is not recommended for user ");
+        }
+    }
+    dataLoader.WriteResults(results);
 }
 
 void SaveModel(MLContext mlContext, DataViewSchema trainingDataViewSchema, ITransformer model)

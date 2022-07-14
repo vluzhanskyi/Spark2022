@@ -13,15 +13,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DbClient\DbClient.csproj" />
     <ProjectReference Include="..\PlaybackModels\PlaybackModels.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <None Update="Data\interactions-train.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Update="Data\recommend-interactions.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
