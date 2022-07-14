@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbClient", "DbClient\DbClie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaybackPredictionWorker", "PlaybackPredictionWorker\PlaybackPredictionWorker.csproj", "{19DBD951-13D2-44CD-9B33-D6C44ECB5D7D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NppClient", "NppClient\NppClient.csproj", "{CC0AB332-A0A1-46B2-BC4E-EFE5187C9C10}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{19DBD951-13D2-44CD-9B33-D6C44ECB5D7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19DBD951-13D2-44CD-9B33-D6C44ECB5D7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19DBD951-13D2-44CD-9B33-D6C44ECB5D7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC0AB332-A0A1-46B2-BC4E-EFE5187C9C10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC0AB332-A0A1-46B2-BC4E-EFE5187C9C10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC0AB332-A0A1-46B2-BC4E-EFE5187C9C10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC0AB332-A0A1-46B2-BC4E-EFE5187C9C10}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

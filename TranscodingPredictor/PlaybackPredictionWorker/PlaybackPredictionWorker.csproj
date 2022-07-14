@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DbClient\DbClient.csproj" />
+    <ProjectReference Include="..\NppClient\NppClient.csproj" />
     <ProjectReference Include="..\PlaybackModels\PlaybackModels.csproj" />
     <ProjectReference Include="..\TranscodingPredictor\TranscodingPredictor.csproj" />
   </ItemGroup>

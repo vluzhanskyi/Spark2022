@@ -18,15 +18,16 @@ public class Predictor
         log = logger;
     }
 
-    public void RunPrediction()
+    public string RunPrediction()
     {
         (IDataView trainingDataView, IDataView testDataView) = LoadData(mlContext);
 
         ITransformer model = BuildAndTrainModel(mlContext, trainingDataView);
 
         EvaluateModel(mlContext, testDataView, model);
-        UseModelForSinglePrediction(mlContext, model);
+        var resultFile = UseModelForSinglePrediction(mlContext, model);
         SaveModel(mlContext, trainingDataView.Schema, model);
+        return resultFile;
     }
 
     (IDataView trainingDataView, IDataView testDataView) LoadData(MLContext mlContext)
@@ -76,10 +77,10 @@ public class Predictor
         log.LogInformation("RSquared: " + metrics.RSquared.ToString());
     }
 
-    void UseModelForSinglePrediction(MLContext mlContext, ITransformer model)
+    string UseModelForSinglePrediction(MLContext mlContext, ITransformer model)
     {
         log.LogInformation("=============== Making a prediction ===============");
-        var predictionEngine = mlContext.Model.CreatePredictionEngine<InteractionsData, PredictedInteraction>(model);
+        var predictionEngine = mlContext.Model.CreatePredictionEngine<InteractionsData, PredictionResult>(model);
         var results = new List<PlaybackStatisticsItem>();
 
         foreach (InteractionsData testInput in dataLoader.GetNewInteractions())
@@ -96,15 +97,16 @@ public class Predictor
             }
         }
 
-        dataLoader.WriteResults(results);
+        return dataLoader.WriteResults(results);
     }
 
-    void SaveModel(MLContext mlContext, DataViewSchema trainingDataViewSchema, ITransformer model)
+    string SaveModel(MLContext mlContext, DataViewSchema trainingDataViewSchema, ITransformer model)
     {
         var modelPath = Path.Combine(Environment.CurrentDirectory, "Data", "RecommenderModel.zip");
 
         log.LogInformation("=============== Saving the model to a file ===============");
         mlContext.Model.Save(model, trainingDataViewSchema, modelPath);
 
+        return modelPath;
     }
 }

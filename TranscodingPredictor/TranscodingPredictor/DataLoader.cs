@@ -61,9 +61,11 @@ namespace TranscodingPredictor
           //  WriteData(newData, "recommend-interactions.csv");
         }
 
-        public void WriteResults(List<PlaybackStatisticsItem> dataList)
+        public string WriteResults(List<PlaybackStatisticsItem> dataList)
         {
-            WriteResultsData(dataList, "Prediction_results.txt");
+            var file = Path.Combine(folderPath, "Prediction_results.txt");
+            WriteResultsData(dataList, file);
+            return file;
         }
 
         private void WriteData(List<PlaybackStatisticsItem> dataList, string fileName)
@@ -81,9 +83,8 @@ namespace TranscodingPredictor
             }
         }
 
-        private void WriteResultsData(List<PlaybackStatisticsItem> dataList, string fileName)
+        private void WriteResultsData(List<PlaybackStatisticsItem> dataList, string filePath)
         {
-            string filePath = Path.Combine(folderPath, fileName);
             if (File.Exists(filePath)) File.Delete(filePath);
             using var stream = File.CreateText(filePath);
            
