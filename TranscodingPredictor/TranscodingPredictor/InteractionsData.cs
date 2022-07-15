@@ -2,7 +2,7 @@
 using Microsoft.ML.Data;
 using PlaybackModels;
 
-internal class InteractionsData : PlaybackStatisticsItem
+public class InteractionsData : PlaybackStatisticsItem
 {
     [LoadColumn(0)] 
     public override int AgentId { get; set; }

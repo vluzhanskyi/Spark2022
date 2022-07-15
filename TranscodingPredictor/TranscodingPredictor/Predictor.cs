@@ -1,18 +1,20 @@
-﻿
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.ML;
 using Microsoft.ML.Trainers;
-using PlaybackModels;using TranscodingPredictor;
+using PlaybackModels;
 
-public class Predictor
+namespace TranscodingPredictor;
+
+public class Predictor : IPredictionEngine
 {
-    DataLoader dataLoader;
+    IPredictionDataLoader dataLoader;
     MLContext mlContext;
     private ILogger log;
 
-    public Predictor(ILogger logger)
+    public Predictor(IPredictionDataLoader dbDataLoader, IConfiguration config, ILogger<Predictor> logger)
     {
-        dataLoader = new DataLoader();
+        dataLoader = dbDataLoader;
         dataLoader.LoadSqlData();
         mlContext = new MLContext();
         log = logger;

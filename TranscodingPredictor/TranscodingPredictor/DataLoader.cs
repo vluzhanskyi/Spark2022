@@ -4,37 +4,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using Microsoft.ML;
 using PlaybackModels;
 
 namespace TranscodingPredictor
 {
-    internal class DataLoader
+    public class DataLoader : IPredictionDataLoader
     {
         private List<PlaybackStatisticsItem> prevData;
         private List<PlaybackStatisticsItem> newData;
-        private readonly DbConnector connector;
+        private readonly IDbDataProvider _dataProvider;
         private string folderPath;
         private string playbackStatisticFileName;
-        public DataLoader()
+
+        public DataLoader(IDbDataProvider dbProvider, IConfiguration config)
         {
-            connector = new DbConnector();
+            _dataProvider = dbProvider;
             prevData = new List<PlaybackStatisticsItem>();
             newData = new List<PlaybackStatisticsItem>();
             folderPath = Path.Combine(Environment.CurrentDirectory, "Data");
-            playbackStatisticFileName = "PlaybackStatistics.csv";
+            playbackStatisticFileName = config["PlaybackStatisticsFile"];
         }
 
         public string GetLastPlaybackStatistics()
         {
-            string filePath = Path.Combine(folderPath, playbackStatisticFileName);
-            File.Copy($@"D:\Program Files\Nice Systems\NICEPlayerPro\{playbackStatisticFileName}", filePath);
+            string filePath = Path.Combine(folderPath, Path.GetFileName(playbackStatisticFileName));
+            File.Copy(playbackStatisticFileName, filePath);
             return filePath;
         }
 
         public IEnumerable<InteractionsData> GetNewInteractions()
         {
-            return newData.Select(dataItem => new InteractionsData()
-                {
+            return newData.Select(dataItem => new InteractionsData
+            {
                     Duration = dataItem.Duration,
                     AgentId = dataItem.AgentId,
                     InteractionId = dataItem.InteractionId,
@@ -45,22 +48,15 @@ namespace TranscodingPredictor
 
         public void LoadSqlData()
         {
-            prevData = connector.LoadInteractionsData(DbFilterType.FromYestarday);
-            newData = connector.LoadInteractionsData(DbFilterType.FromToday);
+            prevData = _dataProvider.LoadInteractionsData(DbFilterType.FromYesterday);
+            newData = _dataProvider.LoadInteractionsData(DbFilterType.FromToday);
             if (!Directory.Exists(folderPath))
             {
                 Directory.CreateDirectory(folderPath);
             }
-            WriteCsv();
+            WriteDbData(prevData, "interactions-train.csv");
         }
-
-        public void WriteCsv()
-        {
-            
-            WriteData(prevData, "interactions-train.csv");
-          //  WriteData(newData, "recommend-interactions.csv");
-        }
-
+        
         public string WriteResults(List<PlaybackStatisticsItem> dataList)
         {
             var file = Path.Combine(folderPath, "Prediction_results.txt");
@@ -68,7 +64,7 @@ namespace TranscodingPredictor
             return file;
         }
 
-        private void WriteData(List<PlaybackStatisticsItem> dataList, string fileName)
+        private void WriteDbData(List<PlaybackStatisticsItem> dataList, string fileName)
         {
             var csvHeader = "AgentId,Duration,Label,OutputType,InteractionId";
            
